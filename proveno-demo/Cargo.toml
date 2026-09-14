@@ -12,7 +12,9 @@ serde.workspace = true
 serde_json.workspace = true
 tower-http = { version = "0.5", features = ["cors", "fs"] }
 uuid = { version = "1", features = ["v4"] }
-proveno = { path = "..", features = ["serde"] }
+proveno = { workspace = true }
+proveno-zk = { workspace = true }
+proveno-oracle = { path = ".." }
 proveno-orchestrator = { path = "../proveno-orchestrator" }
 dotenvy.workspace = true
 tempfile.workspace = true

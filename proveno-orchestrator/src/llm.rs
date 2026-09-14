@@ -244,15 +244,15 @@ pub fn strip_code_fences(raw: &str) -> String {
     let trimmed = raw.trim();
 
     // Try ```lua or ```
-    if let Some(rest) = trimmed.strip_prefix("```lua") {
-        if let Some(code) = rest.strip_suffix("```") {
-            return code.trim().to_string();
-        }
+    if let Some(rest) = trimmed.strip_prefix("```lua")
+        && let Some(code) = rest.strip_suffix("```")
+    {
+        return code.trim().to_string();
     }
-    if let Some(rest) = trimmed.strip_prefix("```") {
-        if let Some(code) = rest.strip_suffix("```") {
-            return code.trim().to_string();
-        }
+    if let Some(rest) = trimmed.strip_prefix("```")
+        && let Some(code) = rest.strip_suffix("```")
+    {
+        return code.trim().to_string();
     }
 
     trimmed.to_string()

@@ -10,7 +10,6 @@ use std::time::Instant;
 
 use proveno::{
     bytecode, compiler, parser,
-    policy::profiles::template_price_feed_v1,
     types::{
         table::{LuaKey, LuaTable},
         value::{LuaString, LuaValue},
@@ -19,6 +18,7 @@ use proveno::{
 };
 use proveno_verifier::build_test_proof;
 use proveno_witness::prover::Prover;
+use proveno_zk::policy::profiles::template_price_feed_v1;
 
 /// Minimal host for the benchmark: supports `http_get` only.
 struct BenchHost {
@@ -120,7 +120,7 @@ return r.status
     let t0 = Instant::now();
     let prover = Prover::new(VmConfig::default(), BenchHost::new());
     let dry_run_result = prover
-        .dry_run_with_policy(&program.into(), LuaValue::Nil, vec![], &policy)
+        .dry_run_with_policy(&program, LuaValue::Nil, vec![], &policy)
         .expect("dry run failed");
     let exec_ms = t0.elapsed().as_millis();
     eprintln!(

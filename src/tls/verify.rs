@@ -9,7 +9,7 @@
 use super::TlsAttestationRecord;
 
 #[cfg(not(feature = "std"))]
-use alloc::{string::String, vec::Vec};
+use alloc::vec::Vec;
 
 // ── P-256 certificate chain verification ─────────────────────────────────────
 

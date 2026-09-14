@@ -12,15 +12,15 @@ use proveno::{
     bytecode::verify,
     compiler::compile,
     parser::parse,
-    tls::{
-        TlsAttestationRecord, compute_tls_attestation_hash, empty_tls_attestation_hash,
-        verify::reverify_attestations,
-    },
     types::{
         table::{LuaKey, LuaTable},
         value::{LuaString, LuaValue},
     },
     vm::engine::{HostInterface, Vm, VmConfig},
+};
+use proveno_oracle::tls::{
+    TlsAttestationRecord, compute_tls_attestation_hash, empty_tls_attestation_hash,
+    verify::reverify_attestations,
 };
 
 // ── TLS attestation provider ────────────────────────────────────────────────

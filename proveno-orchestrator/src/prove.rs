@@ -4,14 +4,12 @@ use std::{
 };
 
 use proveno::{
-    compiler::proto::CompiledProgram,
-    host::tape::OracleTape,
-    types::value::LuaValue,
+    compiler::proto::CompiledProgram, host::tape::OracleTape, types::value::LuaValue,
     vm::engine::VmOutput,
-    zkvm::commitment::{PublicInputs, compute_public_inputs},
 };
 use proveno_noir::{ProveOptions, ProveOutputError, prove_from_artifacts};
 use proveno_witness::prover::DryRunResult;
+use proveno_zk::zkvm::commitment::{PublicInputs, compute_public_inputs};
 
 /// Paths and public inputs produced by `build_proof_artifacts`.
 pub struct ProveArtifacts {
@@ -247,7 +245,7 @@ pub fn build_proof_artifacts_with_openvm(
     let dry: DryRunResult = serde_json::from_str(&dry_json)
         .map_err(|e| format!("failed to parse dry_result.json: {e}"))?;
 
-    let mut guest_input = proveno::zkvm::guest_input::GuestInput::new(
+    let mut guest_input = proveno_zk::zkvm::guest_input::GuestInput::new(
         serde_json::from_str(
             &fs::read_to_string(&artifacts.compiled_path)
                 .map_err(|e| format!("failed to read compiled.json: {e}"))?,
@@ -259,7 +257,7 @@ pub fn build_proof_artifacts_with_openvm(
         Vec::new(),
     );
     if let Some(spec) = policy_spec {
-        let policy = proveno::policy::OraclePolicy::load_spec(spec)?;
+        let policy = proveno_zk::policy::OraclePolicy::load_spec(spec)?;
         guest_input = guest_input.with_policy_canonical(policy.canonical_bytes());
     }
     match guest_input.replay_public_inputs() {

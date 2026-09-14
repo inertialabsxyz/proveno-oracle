@@ -98,7 +98,7 @@ fn main() {
     // execution and committed in `policy_hash`; loading it twice from different
     // places is how those drift apart.
     let policy = match cli.policy {
-        Some(ref spec) => match proveno::policy::OraclePolicy::load_spec(spec) {
+        Some(ref spec) => match proveno_zk::policy::OraclePolicy::load_spec(spec) {
             Ok(p) => {
                 let hash: String = p.policy_hash().iter().map(|b| format!("{b:02x}")).collect();
                 eprintln!("policy: {spec}");

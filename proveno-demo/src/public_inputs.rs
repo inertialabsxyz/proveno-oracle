@@ -1,6 +1,6 @@
 //! Owned `PublicInputs` for the on-chain `ProvenoVerifier.verify` call.
 //!
-//! Distinct from `proveno::zkvm::commitment::PublicInputs`: this carries the
+//! Distinct from `proveno_zk::zkvm::commitment::PublicInputs`: this carries the
 //! `num_steps` (u32) and `return_value` (i64) scalars too, since those are
 //! part of the contract tuple but aren't part of the commitment struct.
 

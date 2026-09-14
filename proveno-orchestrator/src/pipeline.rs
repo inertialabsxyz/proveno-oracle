@@ -289,11 +289,11 @@ pub fn execute_with_policy<H: HostInterface>(
     input: LuaValue,
     config: VmConfig,
     host: H,
-    policy: proveno::policy::OraclePolicy,
+    policy: proveno_zk::policy::OraclePolicy,
 ) -> Result<VmOutput, PipelineError> {
     let mut vm = Vm::new(
         config,
-        proveno::policy::OraclePolicyHost::new(host, &policy),
+        proveno_zk::policy::OraclePolicyHost::new(host, &policy),
     );
     vm.execute(program, input).map_err(|e| {
         let msg = format_vm_error(&e);
@@ -991,7 +991,7 @@ return time_string
 mod policy_execution_tests {
     use super::*;
     use crate::tools::StubHost;
-    use proveno::policy::{OraclePolicy, TlsRequirement};
+    use proveno_zk::policy::{OraclePolicy, TlsRequirement};
     use std::collections::HashMap;
 
     fn policy_allowing(domains: &[&str]) -> OraclePolicy {

@@ -34,7 +34,7 @@
 pub mod verify;
 
 #[cfg(feature = "tls")]
-use crate::host::poseidon2::{field_to_be_bytes32, poseidon2_hash, u8_to_field};
+use proveno::host::poseidon2::{field_to_be_bytes32, poseidon2_hash, u8_to_field};
 
 #[cfg(not(feature = "std"))]
 use alloc::{string::String, vec::Vec};

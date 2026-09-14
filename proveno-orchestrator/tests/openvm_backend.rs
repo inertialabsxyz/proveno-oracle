@@ -11,11 +11,11 @@
 //!     cargo test -p proveno-orchestrator --test openvm_backend -- --ignored --nocapture
 
 use proveno::{
-    policy::OraclePolicy,
     types::value::LuaValue,
     vm::engine::{NoopHost, VmConfig},
 };
 use proveno_orchestrator::{pipeline, prove};
+use proveno_zk::policy::OraclePolicy;
 
 const POLICY: &str = "constrained_http_v1";
 

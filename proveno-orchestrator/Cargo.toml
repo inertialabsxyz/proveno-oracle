@@ -5,10 +5,12 @@ edition.workspace = true
 default-run = "proveno-orchestrator"
 
 [dependencies]
-proveno = { path = "..", features = ["serde", "std", "zkvm"] }
-proveno-witness = { path = "../proveno-witness" }
-proveno-noir = { path = "../proveno-noir" }
-proveno-verifier = { path = "../verifier" }
+proveno = { workspace = true }
+proveno-zk = { workspace = true }
+proveno-oracle = { path = ".." }
+proveno-witness = { workspace = true }
+proveno-noir = { workspace = true }
+proveno-verifier = { workspace = true }
 serde.workspace = true
 serde_json.workspace = true
 reqwest = { workspace = true, features = ["json", "blocking"] }
