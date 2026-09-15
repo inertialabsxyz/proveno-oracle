@@ -7,7 +7,7 @@ default-run = "proveno-orchestrator"
 [dependencies]
 proveno = { workspace = true }
 proveno-zk = { workspace = true }
-proveno-oracle = { path = ".." }
+proveno-agent = { path = ".." }
 proveno-witness = { workspace = true }
 proveno-noir = { workspace = true }
 proveno-verifier = { workspace = true }

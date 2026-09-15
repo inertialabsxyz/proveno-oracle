@@ -1,8 +1,14 @@
-# proveno-oracle
+# proveno-agent
 
-The programmable-oracle application built on proveno: a TLS provenance
-provider, an LLM orchestrator that writes and runs Lua programs, and a demo
-server.
+The agent layer built on proveno: an LLM orchestrator that writes Lua programs
+for a natural-language task, runs them on the core runtime and can prove the
+result, plus a demo server and a TLS provenance provider.
+
+Named for what it does rather than what it is used for. proveno itself is
+deliberately **not** an oracle (see the architecture notes in proveno-core):
+"oracle" promises data provenance, which is a provider's job. The oracle
+machinery proper -- the execution policy, the Noir circuit, the on-chain
+consumer -- lives in proveno-zk.
 
 Split out of the proveno monorepo. Depends on
 [proveno-core](https://github.com/inertialabsxyz/proveno-core) for the runtime

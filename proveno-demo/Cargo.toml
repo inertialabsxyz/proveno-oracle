@@ -14,7 +14,7 @@ tower-http = { version = "0.5", features = ["cors", "fs"] }
 uuid = { version = "1", features = ["v4"] }
 proveno = { workspace = true }
 proveno-zk = { workspace = true }
-proveno-oracle = { path = ".." }
+proveno-agent = { path = ".." }
 proveno-orchestrator = { path = "../proveno-orchestrator" }
 dotenvy.workspace = true
 tempfile.workspace = true

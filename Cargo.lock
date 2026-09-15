@@ -3734,6 +3734,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "proveno-agent"
+version = "0.1.0"
+dependencies = [
+ "p256 0.13.2",
+ "p384",
+ "proveno",
+ "rsa",
+ "rustls",
+ "serde",
+ "serde_json",
+ "sha2",
+ "webpki-roots 0.26.11",
+ "x509-cert",
+]
+
+[[package]]
 name = "proveno-demo"
 version = "0.1.0"
 dependencies = [
@@ -3742,7 +3758,7 @@ dependencies = [
  "dotenvy",
  "hex",
  "proveno",
- "proveno-oracle",
+ "proveno-agent",
  "proveno-orchestrator",
  "proveno-zk",
  "reqwest",
@@ -3767,30 +3783,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "proveno-oracle"
-version = "0.1.0"
-dependencies = [
- "p256 0.13.2",
- "p384",
- "proveno",
- "rsa",
- "rustls",
- "serde",
- "serde_json",
- "sha2",
- "webpki-roots 0.26.11",
- "x509-cert",
-]
-
-[[package]]
 name = "proveno-orchestrator"
 version = "0.1.0"
 dependencies = [
  "clap",
  "dotenvy",
  "proveno",
+ "proveno-agent",
  "proveno-noir",
- "proveno-oracle",
  "proveno-verifier",
  "proveno-witness",
  "proveno-zk",

@@ -18,7 +18,7 @@ use proveno::{
     },
     vm::engine::{HostInterface, Vm, VmConfig},
 };
-use proveno_oracle::tls::{
+use proveno_agent::tls::{
     TlsAttestationRecord, compute_tls_attestation_hash, empty_tls_attestation_hash,
     verify::reverify_attestations,
 };

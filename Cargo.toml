@@ -1,5 +1,5 @@
 [package]
-name = "proveno-oracle"
+name = "proveno-agent"
 version.workspace = true
 edition.workspace = true
 

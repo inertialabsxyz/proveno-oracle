@@ -6,8 +6,8 @@
 CIRCUIT_DIR ?= ../proveno-zk/noir
 
 help:
-	@echo "proveno-oracle — the programmable-oracle application (TLS provenance,"
-	@echo "                 LLM orchestrator, demo server)"
+	@echo "proveno-agent — the agent layer (LLM orchestrator, demo server,"
+	@echo "                TLS provenance provider)"
 	@echo
 	@echo "  check          CI gate: lint + test"
 	@echo "  lint           cargo fmt --check + cargo clippy -D warnings"
