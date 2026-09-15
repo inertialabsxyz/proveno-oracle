@@ -1,13 +1,14 @@
 # proveno-demo
 
-A web demo crate, member of the **proveno** Cargo workspace. The user asks a question
+A web demo crate, member of the **proveno-agent** workspace. The user asks a question
 in plain English; an axum server has an LLM generate a Lua program, compiles and runs it
 on the proveno VM, produces a Noir ZK proof of the execution, and submits an on-chain
 `ProvenoVerifier.verify` call — streaming every stage to the browser over SSE so an
 audience can watch the pipeline run end-to-end.
 
-This is a workspace member (`proveno-demo`), not a standalone repo. It path-deps the
-in-repo core crates:
+This is a workspace member of proveno-agent, not a standalone repo. The runtime
+and the proving layer come from proveno-core and proveno-zk as git dependencies;
+see the root `Cargo.toml`. Historically it path-depped in-repo crates:
 
 ```toml
 proveno = { path = "..", features = ["serde"] }

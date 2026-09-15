@@ -1,47 +1,34 @@
 # proveno-agent
 
-The agent layer built on proveno: an LLM orchestrator that writes Lua programs
-for a natural-language task, runs them on the core runtime and can prove the
-result, plus a demo server and a TLS provenance provider.
+The agent layer for [proveno](https://github.com/inertialabsxyz/proveno): an LLM
+orchestrator that writes Lua for a natural-language task, runs it on the core
+runtime and can prove the result, plus a demo server and a TLS provenance
+provider.
 
-Named for what it does rather than what it is used for. proveno itself is
-deliberately **not** an oracle (see the architecture notes in proveno-core):
-"oracle" promises data provenance, which is a provider's job. The oracle
-machinery proper -- the execution policy, the Noir circuit, the on-chain
-consumer -- lives in proveno-zk.
-
-Split out of the proveno monorepo. Depends on
-[proveno-core](https://github.com/inertialabsxyz/proveno-core) for the runtime
-and [proveno-zk](https://github.com/inertialabsxyz/proveno-zk) for proving,
-both by git tag.
+Depends on [proveno-core](https://github.com/inertialabsxyz/proveno-core) and
+[proveno-zk](https://github.com/inertialabsxyz/proveno-zk) by git tag.
 
 ```bash
-make check                      # lint + test
-make run   TASK="<task>"        # generate a Lua program and run it
-make prove TASK="<task>"        # same, plus a Noir proof
-```
-
-Both need `ANTHROPIC_API_KEY`. An exported-but-empty value shadows `.env`,
-because dotenv does not override variables already set; the orchestrator
-detects this and says so rather than failing with a 401.
-
-## Cross-repo notes
-
-`make prove` needs the Noir circuit, which lives in proveno-zk. The
-orchestrator links `proveno-noir` as a library, so only the circuit directory
-has to be on disk:
-
-```bash
-git clone https://github.com/inertialabsxyz/proveno-zk.git ../proveno-zk
+export ANTHROPIC_API_KEY=...
+make run   TASK="what is the current ETH price in USD"
 make prove TASK="..." CIRCUIT_DIR=../proveno-zk/noir
+make check
 ```
 
-The `demo-*.sh` scripts are **not** currently runnable. They shell out to
-`proveno-compiler`, `proveno-witness` and `proveno-noir` binaries, which now
-live in other repositories, and they carried two defects from before the split:
-they invoke a crate named `proveno-proveno-orchestrator`, and
-`demo-noir-e2e.sh` asks for `--bin proveno-prover`, which has never existed.
-Rewriting them against installed binaries is outstanding work.
+## On the name
 
-The core runtime's tests are in proveno-core (`make check`); the proving
-pipelines (`test-prove`, `prove-openvm`, `prove-examples`) are in proveno-zk.
+This repository was `proveno-oracle` until September 2026. Proveno is
+deliberately **not** an oracle: "oracle" promises data provenance, which is a
+provider's job, not proveno's. The oracle machinery proper — the execution
+policy, the Noir circuit, the on-chain consumer — lives in proveno-zk. Two
+thirds of this repository is the agent loop, so the name follows the code.
+
+## Caveat
+
+The `demo-*.sh` scripts are **not** currently runnable: they shell out to
+binaries that now live in other repositories, and carried two defects from
+before the split. See [CLAUDE.md](CLAUDE.md).
+
+## Licence
+
+See [LICENSE](LICENSE).
